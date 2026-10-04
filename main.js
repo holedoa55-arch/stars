@@ -12,6 +12,20 @@ document.addEventListener("DOMContentLoaded", () => {
   if (localStorage.getItem(FORM_KEY) === "unlocked") {
     if (locked) locked.style.display = "none";
     if (content) content.style.display = "block";
+    return;
+  }
+
+  // Кнопка «Купить премиум» раскрывает шаги получения доступа
+  const buyBtn = document.getElementById("buy-btn");
+  const steps = document.getElementById("buy-steps");
+  const buyHint = document.getElementById("buy-hint");
+  if (buyBtn && steps) {
+    buyBtn.addEventListener("click", () => {
+      const open = steps.style.display !== "none";
+      steps.style.display = open ? "none" : "block";
+      buyBtn.textContent = open ? "Купить премиум · 50⭐" : "Свернуть";
+      if (buyHint) buyHint.style.display = "none";
+    });
   }
 });
 

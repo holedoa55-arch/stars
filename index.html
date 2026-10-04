@@ -70,19 +70,27 @@
   <section class="premium" id="premium">
     <div class="locked" id="locked">
       <div class="lock-icon">🔒</div>
-      <h2>Премиум «давний осинт»</h2>
-      <p class="section-sub">Закрытый набор инструментов и методик за 50 звёзд</p>
-      <div class="pay-box">
-        <span class="stars-big">50 ⭐</span>
-        <p>Для получения доступа напиши владельцу:</p>
-        <a class="pay-btn" href="https://t.me/davny">Оплатить 50★ · @davny</a>
-        <p class="hint">После оплаты звёздами в Telegram владелец выдаст код доступа.</p>
+      <h2>Купить премиум · давний осинт</h2>
+      <p class="section-sub">Открой закрытый набор инструментов за 50 звёзд</p>
+
+      <button class="pay-btn" id="buy-btn" type="button">Купить премиум · 50⭐</button>
+      <p class="hint" id="buy-hint">Нажми, чтобы увидеть, как получить доступ</p>
+
+      <div id="buy-steps" style="display:none">
+        <ol class="buy-steps">
+          <li>Напиши владельцу <a href="https://t.me/davny">@davny</a> и оплати 50⭐ звёздами.</li>
+          <li>Получи код доступа у владельца.</li>
+          <li>Введи код ниже — премиум откроется.</li>
+        </ol>
+        <div class="pay-row">
+          <a class="pay-btn" href="https://t.me/davny">Оплатить · @davny</a>
+        </div>
+        <form id="code-form" onsubmit="event.preventDefault(); tryCode();">
+          <input id="code-input" type="text" placeholder="Введите код доступа" autocomplete="off">
+          <button id="code-btn" type="submit">Открыть</button>
+        </form>
+        <p id="code-msg" class="hint" style="margin-top:10px"></p>
       </div>
-      <form id="code-form" onsubmit="event.preventDefault(); tryCode();">
-        <input id="code-input" type="text" placeholder="Введите код доступа" autocomplete="off">
-        <button id="code-btn" type="submit">Открыть</button>
-      </form>
-      <p id="code-msg" class="hint" style="margin-top:10px"></p>
     </div>
 
     <div class="premium-content" id="premium-content" style="display:none">

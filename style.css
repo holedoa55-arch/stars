@@ -231,53 +231,72 @@ h2 {
 .premium { padding-bottom: 80px; }
 
 .locked {
+  max-width: 640px;
+  margin: 0 auto;
   border: 2px dashed var(--neon2);
   background: var(--bg2);
   border-radius: 20px;
-  padding: 44px 24px;
-  box-shadow: 0 0 48px rgba(176,38,255,0.18) inset;
+  padding: 36px 26px;
+  box-shadow: 0 0 48px rgba(176,38,255,0.15) inset;
 }
 
-.lock-icon { font-size: 46px; margin-bottom: 10px; }
-
-.pay-box {
-  max-width: 420px;
-  margin: 20px auto 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.stars-big {
-  font-size: 58px;
-  font-weight: 900;
-  background: linear-gradient(120deg, var(--gold), var(--pink));
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 22px rgba(255,216,107,0.5));
-}
-
-.pay-box p { color: var(--muted); margin: 12px 0; }
+.lock-icon { font-size: 40px; margin-bottom: 10px; }
 
 .pay-btn {
   display: inline-block;
-  padding: 16px 36px;
+  padding: 15px 32px;
   font-weight: 800;
-  font-size: 17px;
+  font-size: 16px;
   color: #03040a;
   background: linear-gradient(90deg, var(--gold), var(--pink));
+  border: none;
   border-radius: 999px;
   text-decoration: none;
-  box-shadow: 0 10px 44px rgba(255,62,200,0.45);
+  cursor: pointer;
+  box-shadow: 0 8px 34px rgba(255,62,200,0.4);
   transition: transform 0.18s, filter 0.18s;
 }
 
 .pay-btn:hover { transform: translateY(-3px); filter: brightness(1.1); }
 
-.hint { font-size: 13px; color: var(--muted); }
+.hint { font-size: 13px; color: var(--muted); margin-top: 12px; }
 
-#code-form { margin-top: 18px; }
+.buy-steps {
+  list-style: none;
+  text-align: left;
+  margin: 22px auto 18px;
+  max-width: 520px;
+  counter-reset: step;
+}
+.buy-steps li {
+  counter-increment: step;
+  position: relative;
+  padding: 8px 0 8px 44px;
+  color: var(--muted);
+  font-size: 15px;
+}
+.buy-steps li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(0,229,255,0.1);
+  border: 1px solid var(--neon);
+  color: var(--neon);
+  font-weight: 800;
+  font-size: 14px;
+}
+.buy-steps a { color: var(--gold); text-decoration: none; font-weight: 700; }
+.buy-steps a:hover { text-decoration: underline; }
+
+.pay-row { margin: 6px 0 16px; }
+
+#code-form { margin-top: 10px; }
 #code-input {
   padding: 12px 14px;
   border-radius: 10px;
