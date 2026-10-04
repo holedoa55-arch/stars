@@ -17,56 +17,39 @@
     <span class="owner">владелец: <a href="https://t.me/davny">@davny</a></span>
   </nav>
 
-  <header class="hero">
-    <div class="hero-inner">
-      <p class="logo">✦ ✦ ✦</p>
-      <h1>давний <span class="grad">осинт</span></h1>
-      <p class="sub">Авторские инструменты для работы с открытыми источниками информации. Тёмный космос данных — у тебя под рукой.</p>
-      <div class="hero-btns">
-        <a class="cta" href="#premium">Получить премиум за 50⭐</a>
-        <a class="cta ghost" href="#free">Бесплатные инструменты</a>
-      </div>
-    </div>
-  </header>
+  <!-- Навигация по вкладкам -->
+  <nav class="tabs">
+    <button class="tab active" data-tab="home">Главная</button>
+    <button class="tab" data-tab="premium">Премиум давний осинт</button>
+    <button class="tab" data-tab="free">Бесплатный</button>
+    <button class="tab" data-tab="how">Как это работает</button>
+    <button class="tab" data-tab="faq">Частые вопросы</button>
+  </nav>
 
-  <section class="stats">
-    <div class="stat"><b>50⭐</b><span>стоимость премиума</span></div>
-    <div class="stat"><b>7</b><span>премиум-инструментов</span></div>
-    <div class="stat"><b>100%</b><span>только открытые данные</span></div>
-    <div class="stat"><b>24/7</b><span>доступ по ссылке</span></div>
+  <!-- Вкладка: Главная -->
+  <section class="tab-page active" id="page-home">
+    <header class="hero">
+      <div class="hero-inner">
+        <p class="logo">✦ ✦ ✦</p>
+        <h1>давний <span class="grad">осинт</span></h1>
+        <p class="sub">Авторские инструменты для работы с открытыми источниками информации. Тёмный космос данных — у тебя под рукой.</p>
+        <div class="hero-btns">
+          <button class="cta" data-goto="premium">Получить премиум за 50⭐</button>
+          <button class="cta ghost" data-goto="free">Бесплатные инструменты</button>
+        </div>
+      </div>
+    </header>
+
+    <section class="stats">
+      <div class="stat"><b>50⭐</b><span>стоимость премиума</span></div>
+      <div class="stat"><b>7</b><span>премиум-инструментов</span></div>
+      <div class="stat"><b>100%</b><span>только открытые данные</span></div>
+      <div class="stat"><b>24/7</b><span>доступ по ссылке</span></div>
+    </section>
   </section>
 
-  <section class="free" id="free">
-    <h2>Бесплатный раздел</h2>
-    <p class="section-sub">Открытые инструменты в подарок каждому</p>
-    <div class="cards">
-      <div class="card">
-        <div class="icon">🕵</div>
-        <h3>Поиск по нику</h3>
-        <p>Проверка одного username на десятках открытых платформ.</p>
-        <a class="link" href="https://whatsmyname.app/">whatsmyname.app</a>
-      </div>
-      <div class="card">
-        <div class="icon">🌐</div>
-        <h3>Обратный поиск фото</h3>
-        <p>Найти, где ещё встречается картинка в открытом доступе.</p>
-        <a class="link" href="https://images.google.com/">images.google.com</a>
-      </div>
-      <div class="card">
-        <div class="icon">🛰</div>
-        <h3>Проверка в утечках</h3>
-        <p>Самопроверка email в публичных утечках данных.</p>
-        <a class="link" href="https://haveibeenpwned.com/">haveibeenpwned.com</a>
-      </div>
-      <div class="card">
-        <div class="icon">🗺</div>
-        <h3>Архив веб-страниц</h3>
-        <p>Исторические версии сайтов в интернете.</p>
-        <a class="link" href="https://web.archive.org/">web.archive.org</a>
-      </div>
-    </div>
-  </section>
-
+  <!-- Вкладка: Премиум -->
+  <section class="tab-page" id="page-premium">
   <section class="premium" id="premium">
     <div class="locked" id="locked">
       <div class="lock-icon">🔒</div>
@@ -145,7 +128,44 @@
       </div>
     </div>
   </section>
+  </section>
 
+  <!-- Вкладка: Бесплатный -->
+  <section class="tab-page" id="page-free">
+  <section class="free" id="free">
+    <h2>Бесплатный раздел</h2>
+    <p class="section-sub">Открытые инструменты в подарок каждому</p>
+    <div class="cards">
+      <div class="card">
+        <div class="icon">🕵</div>
+        <h3>Поиск по нику</h3>
+        <p>Проверка одного username на десятках открытых платформ.</p>
+        <a class="link" href="https://whatsmyname.app/">whatsmyname.app</a>
+      </div>
+      <div class="card">
+        <div class="icon">🌐</div>
+        <h3>Обратный поиск фото</h3>
+        <p>Найти, где ещё встречается картинка в открытом доступе.</p>
+        <a class="link" href="https://images.google.com/">images.google.com</a>
+      </div>
+      <div class="card">
+        <div class="icon">🛰</div>
+        <h3>Проверка в утечках</h3>
+        <p>Самопроверка email в публичных утечках данных.</p>
+        <a class="link" href="https://haveibeenpwned.com/">haveibeenpwned.com</a>
+      </div>
+      <div class="card">
+        <div class="icon">🗺</div>
+        <h3>Архив веб-страниц</h3>
+        <p>Исторические версии сайтов в интернете.</p>
+        <a class="link" href="https://web.archive.org/">web.archive.org</a>
+      </div>
+    </div>
+  </section>
+  </section>
+
+  <!-- Вкладка: Как это работает -->
+  <section class="tab-page" id="page-how">
   <section class="how">
     <h2>Как это работает</h2>
     <ol>
@@ -156,7 +176,10 @@
     </ol>
     <a class="cta" href="https://t.me/davny">Написать владельцу →</a>
   </section>
+  </section>
 
+  <!-- Вкладка: Частые вопросы -->
+  <section class="tab-page" id="page-faq">
   <section class="faq">
     <h2>Частые вопросы</h2>
     <details>
@@ -175,6 +198,7 @@
       <summary>Это законно?</summary>
       <p>Да — описаны только публичные источники и легальные инструменты. Незаконный сбор персональных данных исключён.</p>
     </details>
+  </section>
   </section>
 
   <footer>
