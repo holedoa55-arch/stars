@@ -54,12 +54,60 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  initReviews();
+
   // Автооткрытие вкладки из хеша (#premium, #free...)
   if (window.location.hash) {
     const h = window.location.hash.replace("#", "");
     if (document.querySelector('[data-tab="' + h + '"]')) goto(h);
   }
 });
+
+function initReviews() {
+  // рендер списка
+  const list = document.getElementById("review-list");
+  if (list) renderReviews(list);
+
+  // отправка формы
+  const form = document.getElementById("review-form");
+  if (form) {
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const name = document.getElementById("review-name").value.trim();
+      const text = document.getElementById("review-text").value.trim();
+      const msg = document.getElementById("review-msg");
+      if (!name || !text) return;
+      const tg = "https://t.me/davny?text=" + encodeURIComponent("Новый отзыв\n\nИмя: " + name + "\nОтзыв: " + text);
+      window.open(tg, "_blank", "noopener");
+      if (msg) { msg.textContent = "Спасибо! Отзыв отправлен владельцу."; msg.style.color = "#37d69f"; }
+      form.reset();
+    });
+  }
+}
+
+function renderReviews(list) {
+  const arr = (Array.isArray(REVIEWS) ? REVIEWS : []);
+  if (!arr.length) {
+    list.innerHTML = '<p class="hint">Отзывов пока нет. Будь первым!</p>';
+    return;
+  }
+  list.innerHTML = "";
+  arr.slice().reverse().forEach((r) => {
+    const el = document.createElement("div");
+    el.className = "review-card list-item";
+    const stars = "⭐".repeat(Math.min(5, Math.max(0, r.stars || 5)));
+    el.innerHTML = '<div class="stars">' + stars + '</div>' +
+      '<p>' + esc(r.text) + '</p>' +
+      '<span class="rev-author">— ' + esc(r.name) + '</span>';
+    list.appendChild(el);
+  });
+}
+
+function esc(str) {
+  return String(str)
+    .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
 
 function tryCode() {
   const input = document.getElementById("code-input");

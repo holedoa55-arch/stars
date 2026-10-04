@@ -24,6 +24,7 @@
     <button class="tab" data-tab="free">Бесплатный</button>
     <button class="tab" data-tab="how">Как это работает</button>
     <button class="tab" data-tab="faq">Частые вопросы</button>
+    <button class="tab" data-tab="reviews">Отзывы</button>
   </nav>
 
   <!-- Вкладка: Главная -->
@@ -83,28 +84,6 @@
           <div class="tg-user">@davny · владелец</div>
         </div>
         <a class="pay-btn" href="https://t.me/davny?text=%D0%9F%D1%80%D0%B8%D0%B2%D0%B5%D1%82%2C%20%D1%85%D0%BE%D1%87%D1%83%20%D0%BA%D1%83%D0%BF%D0%B8%D1%82%D1%8C%20%D0%BF%D1%80%D0%B5%D0%BC%D0%B8%D1%83%D0%BC" target="_blank" rel="noopener">Написать в Telegram</a>
-      </div>
-    </section>
-
-    <!-- Отзывы -->
-    <section class="reviews fade">
-      <h2>Отзывы</h2>
-      <div class="cards">
-        <div class="review-card">
-          <div class="stars">⭐⭐⭐⭐⭐</div>
-          <p>«Быстро, чётко, все инструменты заработали. Рекомендую»</p>
-          <span class="rev-author">— Алексей</span>
-        </div>
-        <div class="review-card">
-          <div class="stars">⭐⭐⭐⭐⭐</div>
-          <p>«Премиум сэкономил кучу времени. Открыл доступ за минуту»</p>
-          <span class="rev-author">— Даниил</span>
-        </div>
-        <div class="review-card">
-          <div class="stars">⭐⭐⭐⭐⭐</div>
-          <p>«Всё по открытым данным, как и обещано. Оплата простой»</p>
-          <span class="rev-author">— Марк</span>
-        </div>
       </div>
     </section>
   </section>
@@ -264,12 +243,30 @@
   </section>
   </section>
 
+  <!-- Вкладка: Отзывы -->
+  <section class="tab-page" id="page-reviews">
+  <section class="reviews-sec">
+    <h2>Отзывы</h2>
+    <p class="section-sub">Поделись впечатлением — твой отзыв увидит владелец</p>
+
+    <form id="review-form" class="review-form">
+      <input id="review-name" type="text" placeholder="Твоё имя" maxlength="30" required>
+      <textarea id="review-text" placeholder="Напиши отзыв…" rows="3" maxlength="300" required></textarea>
+      <button type="submit" class="pay-btn">Отправить отзыв →</button>
+      <p id="review-msg" class="hint"></p>
+    </form>
+
+    <div class="review-list" id="review-list"></div>
+  </section>
+  </section>
+
   <footer>
     <p>✦ давний осинт · владелец <a href="https://t.me/davny">@davny</a> · премиум за 50⭐</p>
   </footer>
 
   <script src="stars.js"></script>
   <script src="codes.js"></script>
+  <script src="reviews.js"></script>
   <script src="main.js"></script>
   <script src="sound.js"></script>
 </body>
