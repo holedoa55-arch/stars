@@ -20,6 +20,16 @@ document.addEventListener("DOMContentLoaded", () => {
   };
   tabButtons.forEach(b => b.addEventListener("click", () => goto(b.dataset.tab)));
 
+  // Плавное появление при прокрутке
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll(".fade").forEach(el => io.observe(el));
+  } else {
+    document.querySelectorAll(".fade").forEach(el => el.classList.add("in"));
+  }
+
   // Кнопки «перейти на вкладку» (data-goto)
   document.querySelectorAll("[data-goto]").forEach(btn => {
     btn.addEventListener("click", () => goto(btn.dataset.goto));
