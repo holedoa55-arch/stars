@@ -32,6 +32,7 @@
     <header class="hero">
       <div class="hero-inner">
         <p class="logo">✦ ✦ ✦</p>
+        <div class="online-badge"><span class="dot"></span> онлайн сейчас</div>
         <h1>давний <span class="grad">осинт</span></h1>
         <p class="sub">Авторские инструменты для работы с открытыми источниками информации. Тёмный космос данных — у тебя под рукой.</p>
         <div class="hero-btns">
@@ -46,6 +47,7 @@
       <div class="stat"><b>7</b><span>премиум-инструментов</span></div>
       <div class="stat"><b>100%</b><span>только открытые данные</span></div>
       <div class="stat"><b>24/7</b><span>доступ по ссылке</span></div>
+      <div class="stat"><b><span id="open-count">0</span></b><span>открытий премиума</span></div>
     </section>
 
     <!-- Почему мы -->
@@ -94,14 +96,33 @@
     <div class="locked" id="locked">
       <div class="lock-icon">🔒</div>
       <h2>Купить премиум · давний осинт</h2>
-      <p class="section-sub">Открой закрытый набор инструментов за 50 звёзд</p>
+      <p class="section-sub">Открой закрытый набор инструментов — выбери свой уровень</p>
 
-      <button class="pay-btn" id="buy-btn" type="button">Купить премиум · 50⭐</button>
+      <div class="plans">
+        <button class="plan" data-plan="15">
+          <span class="plan-name">Старт</span>
+          <span class="plan-price">15⭐</span>
+          <span class="plan-desc">3 инструмента</span>
+        </button>
+        <button class="plan active" data-plan="30">
+          <span class="plan-name">Стандарт</span>
+          <span class="plan-price">30⭐</span>
+          <span class="plan-desc">5 инструментов</span>
+        </button>
+        <button class="plan hit" data-plan="50">
+          <span class="plan-name">Топ</span>
+          <span class="plan-price">50⭐</span>
+          <span class="plan-desc">все 7 инструментов</span>
+        </button>
+      </div>
+      <p class="hint">Сейчас выбран тариф: <b id="plan-label">Топ · 50⭐</b></p>
+
+      <button class="pay-btn" id="buy-btn" type="button">Купить премиум · <span id="buy-label">50⭐</span></button>
       <p class="hint" id="buy-hint">Нажми, чтобы увидеть, как получить доступ</p>
 
       <div id="buy-steps" style="display:none">
         <ol class="buy-steps">
-          <li>Напиши владельцу <a href="https://t.me/davny">@davny</a> и оплати 50⭐ звёздами.</li>
+          <li>Напиши владельцу <a href="https://t.me/davny">@davny</a> и оплати выбранные звёзды.</li>
           <li>Получи код доступа у владельца.</li>
           <li>Введи код ниже — премиум откроется.</li>
         </ol>

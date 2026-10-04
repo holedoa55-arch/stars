@@ -524,7 +524,76 @@ footer a { color: var(--gold); text-decoration: none; font-weight: 700; }
 
 .review-card p { color: var(--muted); font-size: 14px; margin-bottom: 10px; }
 
-/* ---------- TELEGRAM CARD ---------- */
+/* ---------- ONLINE BADGE ---------- */
+.online-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--muted);
+  background: rgba(93,138,118,0.12);
+  border: 1px solid rgba(93,138,118,0.3);
+  border-radius: 999px;
+  padding: 6px 14px;
+  margin-bottom: 14px;
+}
+
+.online-badge .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--green);
+  animation: blink 1.5s ease-in-out infinite;
+}
+
+@keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+/* ---------- PLANS ---------- */
+.plans {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  max-width: 560px;
+  margin: 20px auto;
+}
+
+.plan {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px 12px;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, transform 0.15s;
+  color: var(--text);
+  position: relative;
+}
+
+.plan:hover { border-color: var(--neon); transform: translateY(-2px); }
+
+.plan.active {
+  border-color: var(--neon);
+  background: rgba(95,140,176,0.12);
+}
+
+.plan.hit::after {
+  content: "ХИТ";
+  position: absolute;
+  top: -8px;
+  right: 8px;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(138,95,95,0.25);
+  color: #d99a9a;
+  border: 1px solid #8a5f5f;
+}
+
+.plan-name { display: block; font-weight: 700; font-size: 14px; }
+.plan-price { display: block; font-size: 24px; font-weight: 900; color: var(--text); margin: 4px 0; }
+.plan-desc { display: block; font-size: 12px; color: var(--muted); }
 .tg-card {
   display: flex;
   align-items: center;

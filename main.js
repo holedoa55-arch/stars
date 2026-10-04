@@ -56,6 +56,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
   initReviews();
 
+  // Выбор тарифа
+  let plan = 50;
+  document.querySelectorAll(".plan").forEach(p => {
+    p.addEventListener("click", () => {
+      document.querySelectorAll(".plan").forEach(x => x.classList.remove("active"));
+      p.classList.add("active");
+      plan = Number(p.dataset.plan);
+      const label = p.querySelector(".plan-name").textContent + " · " + plan + "⭐";
+      const buyLabel = document.getElementById("buy-label");
+      const planL = document.getElementById("plan-label");
+      if (buyLabel) buyLabel.textContent = plan + "⭐";
+      if (planL) planL.textContent = label;
+    });
+  });
+
+  // Счётчик открытий премиума
+  const OC_KEY = "stars_open_count";
+  let cur = Number(localStorage.getItem(OC_KEY) || 0);
+  if (!localStorage.getItem("stars_opened")) {
+    cur += 1;
+    localStorage.setItem(OC_KEY, String(cur));
+    localStorage.setItem("stars_opened", "1");
+  }
+  const ocEl = document.getElementById("open-count");
+  if (ocEl) ocEl.textContent = (cur + 14); // стартовая база
+
   // Автооткрытие вкладки из хеша (#premium, #free...)
   if (window.location.hash) {
     const h = window.location.hash.replace("#", "");
