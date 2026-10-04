@@ -4,10 +4,41 @@
 // Ввод кода открывает премиум-раздел и запоминает доступ в браузере.
 
 const FORM_KEY = "stars_premium_access";
+const FORM_EXPIRY_KEY = "stars_premium_expiry";
+
+// Квиз: вопросы OSINT с вариантами
+const QUIZ = [
+  { q: "Что такое OSINT?",
+    a: ["Разведка по открытым источникам", "Хакерский взлом", "Вирусная программа", "Вид шифрования"],
+    ok: 0 },
+  { q: "Что такое WHOIS?",
+    a: ["Данные о владельце домена", "Тип браузера", "Антивирус", "Поисковая система"],
+    ok: 0 },
+  { q: "Какой сервис ищет открытые устройства в интернете?",
+    a: ["Shodan", "WordPress", "Photoshop", "Gmail"],
+    ok: 0 },
+  { q: "Что помогает найти, где ещё встречается картинка?",
+    a: ["Обратный поиск по изображению", "Блокчейн", "Веб-камера", "PDF-редактор"],
+    ok: 0 },
+  { q: "Что такое конфиденциальная утечка данных (data breach)?",
+    a: ["Попадание данных в открытый доступ", "Потеря телефона", "Удаление файла", "Смена пароля"],
+    ok: 0 },
+  { q: "Какой инструмент помогает работать с открытыми реестрами юрлиц в РФ?",
+    a: ["ЕГРЮЛ/egrul.nalog.ru", "Google Docs", "Telegram", "Spotify"],
+    ok: 0 },
+];
 
 document.addEventListener("DOMContentLoaded", () => {
   const locked = document.getElementById("locked");
   const content = document.getElementById("premium-content");
+
+  // Проверка истечения временного премиума (5 минут от квиза)
+  const expiry = localStorage.getItem(FORM_EXPIRY_KEY);
+  if (expiry && Number(expiry) < Date.now()) {
+    localStorage.removeItem(FORM_EXPIRY_KEY);
+    localStorage.removeItem(FORM_KEY);
+  }
+
   const hasAccess = localStorage.getItem(FORM_KEY) === "unlocked";
 
   // Вкладки
@@ -48,6 +79,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const h = window.location.hash.replace("#", "");
     if (document.querySelector('[data-tab="' + h + '"]')) goto(h);
   }
+
+  initQuiz();
 });
 
 function tryCode() {
@@ -70,4 +103,86 @@ function tryCode() {
       msg.style.color = "#ff5d6d";
     }
   }
+}
+
+// ------------- КВИЗ -------------
+let quizIndex = 0;
+let quizAnswered = false;
+
+function initQuiz() {
+  const box = document.getElementById("quiz-box");
+  if (!box) return;
+  quizIndex = 0;
+  quizAnswered = false;
+  renderQuestion();
+}
+
+function renderQuestion() {
+  const q = QUIZ[quizIndex];
+  const total = QUIZ.length;
+  const num = document.getElementById("q-num");
+  const totalEl = document.getElementById("q-total");
+  const title = document.getElementById("q-title");
+  const answers = document.getElementById("q-answers");
+  const feedback = document.getElementById("q-feedback");
+  const reward = document.getElementById("q-reward");
+  const restart = document.getElementById("q-restart");
+  const barFill = document.getElementById("q-bar-fill");
+
+  num.textContent = quizIndex + 1;
+  totalEl.textContent = total;
+  title.textContent = q.q;
+  feedback.innerHTML = "";
+  feedback.className = "q-feedback";
+  reward.style.display = "none";
+  restart.style.display = "none";
+  quizAnswered = false;
+  barFill.style.width = ((quizIndex) / total * 100) + "%";
+
+  answers.innerHTML = "";
+  q.a.forEach((ans, i) => {
+    const btn = document.createElement("button");
+    btn.className = "q-ans";
+    btn.textContent = ans;
+    btn.addEventListener("click", () => answer(i, btn));
+    answers.appendChild(btn);
+  });
+}
+
+function answer(i, btn) {
+  if (quizAnswered) return;
+  quizAnswered = true;
+  const q = QUIZ[quizIndex];
+  const feedback = document.getElementById("q-feedback");
+  const answers = document.querySelectorAll(".q-ans");
+
+  if (i === q.ok) {
+    btn.classList.add("correct");
+    // за правильный ответ — 5 минут премиума
+    const reward = document.getElementById("q-reward");
+    reward.style.display = "inline-block";
+    const barFill = document.getElementById("q-bar-fill");
+    barFill.style.width = ((quizIndex + 1) / QUIZ.length * 100) + "%";
+  } else {
+    btn.classList.add("wrong");
+    answers[q.ok].classList.add("correct");
+    feedback.innerHTML = "❌ Неверно. Правильный ответ выделен.";
+    feedback.className = "q-feedback bad";
+    const restart = document.getElementById("q-restart");
+    restart.style.display = "inline-block";
+  }
+}
+
+function grantTempPremium() {
+  const fiveMin = 5 * 60 * 1000;
+  localStorage.setItem(FORM_KEY, "unlocked");
+  localStorage.setItem(FORM_EXPIRY_KEY, String(Date.now() + fiveMin));
+  alert("🎉 5 минут бесплатного премиума активированы! Открываю вкладку Премиум…");
+  // открыть вкладку премиума
+  const bt = document.querySelector('[data-tab="premium"]');
+  if (bt) bt.click();
+}
+
+function restartQuiz() {
+  initQuiz();
 }
