@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Звёзды — премиум OSINT за 50⭐</title>
-  <meta name="description" content="Тёмный сайт со звёздным небом. Владелец @davny. Премиум OSINT-раздел за 50 звёзд.">
+  <title>давний осинт — премиум OSINT за 50⭐</title>
+  <meta name="description" content="давний осинт — авторские инструменты OSINT по открытым источникам. Владелец @davny. Премиум за 50 звёзд.">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -12,37 +12,57 @@
   <canvas id="stars"></canvas>
   <div class="vignette"></div>
 
-  <div class="topbar">
-    <span class="brand">✦ ЗВЁЗДЫ</span>
+  <nav class="topbar">
+    <span class="brand">✦ ДАВНИЙ ОСИНТ</span>
     <span class="owner">владелец: <a href="https://t.me/davny">@davny</a></span>
-  </div>
+  </nav>
 
   <header class="hero">
     <div class="hero-inner">
       <p class="logo">✦ ✦ ✦</p>
-      <h1>Звёздное небо<br>премиум-контента</h1>
-      <p class="sub">Тёмный космос с авторскими инструментами. Владелец канала — <a href="https://t.me/davny">@davny</a>.</p>
+      <h1>давний <span class="grad">осинт</span></h1>
+      <p class="sub">Авторские инструменты для работы с открытыми источниками информации. Тёмный космос данных — у тебя под рукой.</p>
+      <div class="hero-btns">
+        <a class="cta" href="#premium">Получить премиум за 50⭐</a>
+        <a class="cta ghost" href="#free">Бесплатные инструменты</a>
+      </div>
     </div>
   </header>
 
-  <section class="free">
+  <section class="stats">
+    <div class="stat"><b>50⭐</b><span>стоимость премиума</span></div>
+    <div class="stat"><b>6+</b><span>премиум-инструментов</span></div>
+    <div class="stat"><b>100%</b><span>только открытые данные</span></div>
+    <div class="stat"><b>24/7</b><span>доступ по ссылке</span></div>
+  </section>
+
+  <section class="free" id="free">
     <h2>Бесплатный раздел</h2>
-    <p class="section-sub">Несколько открытых инструментов в подарок</p>
+    <p class="section-sub">Открытые инструменты в подарок каждому</p>
     <div class="cards">
       <div class="card">
-        <h3>🕵 Поиск по нику</h3>
+        <div class="icon">🕵</div>
+        <h3>Поиск по нику</h3>
         <p>Проверка одного username на десятках открытых платформ.</p>
         <a class="link" href="https://whatsmyname.app/">whatsmyname.app</a>
       </div>
       <div class="card">
-        <h3>🌐 Обратный поиск фото</h3>
-        <p>Найти, где ещё встречается картинка.</p>
+        <div class="icon">🌐</div>
+        <h3>Обратный поиск фото</h3>
+        <p>Найти, где ещё встречается картинка в открытом доступе.</p>
         <a class="link" href="https://images.google.com/">images.google.com</a>
       </div>
       <div class="card">
-        <h3>🛰 Проверка данных в утечках</h3>
-        <p>Самопроверка email в публичных утечках.</p>
+        <div class="icon">🛰</div>
+        <h3>Проверка в утечках</h3>
+        <p>Самопроверка email в публичных утечках данных.</p>
         <a class="link" href="https://haveibeenpwned.com/">haveibeenpwned.com</a>
+      </div>
+      <div class="card">
+        <div class="icon">🗺</div>
+        <h3>Архив веб-страниц</h3>
+        <p>Исторические версии сайтов в интернете.</p>
+        <a class="link" href="https://web.archive.org/">web.archive.org</a>
       </div>
     </div>
   </section>
@@ -50,11 +70,11 @@
   <section class="premium" id="premium">
     <div class="locked" id="locked">
       <div class="lock-icon">🔒</div>
-      <h2>Премиум OSINT</h2>
-      <p class="section-sub">Закрытый набор инструментов и методик</p>
+      <h2>Премиум «давний осинт»</h2>
+      <p class="section-sub">Закрытый набор инструментов и методик за 50 звёзд</p>
       <div class="pay-box">
         <span class="stars-big">50 ⭐</span>
-        <p>Чтобы открыть платный раздел — напиши владельцу:</p>
+        <p>Для получения доступа напиши владельцу:</p>
         <a class="pay-btn" href="https://t.me/davny">Оплатить 50★ · @davny</a>
         <p class="hint">После оплаты звёздами в Telegram владелец выдаст код доступа.</p>
       </div>
@@ -65,50 +85,86 @@
       <p id="code-msg" class="hint" style="margin-top:10px"></p>
     </div>
 
-    <!-- Скрытый премиум-контент -->
     <div class="premium-content" id="premium-content" style="display:none">
-      <h2>Премиум OSINT</h2>
+      <h2>Премиум «давний осинт»</h2>
       <p class="section-sub">Ваш доступ активирован ✦</p>
       <div class="cards">
         <div class="card">
-          <h3>🛰 Shodan — про</h3>
+          <div class="icon">🛰</div>
+          <h3>Shodan — про</h3>
           <p>Детальный поиск открытых устройств и сервисов в интернете.</p>
           <a class="link" href="https://www.shodan.io/">shodan.io</a>
         </div>
         <div class="card">
-          <h3>🧩 Sherlock CLI</h3>
+          <div class="icon">🧩</div>
+          <h3>Sherlock CLI</h3>
           <p>Массовая проверка ника по сотням площадок из терминала.</p>
           <a class="link" href="https://github.com/sherlock-project/sherlock">sherlock</a>
         </div>
         <div class="card">
-          <h3>📡 crt.sh — субдомены</h3>
+          <div class="icon">📡</div>
+          <h3>crt.sh — субдомены</h3>
           <p>Поиск субдоменов и сертификатов по Certificate Transparency.</p>
           <a class="link" href="https://crt.sh/">crt.sh</a>
         </div>
         <div class="card">
-          <h3>🌍 Wayback Machine</h3>
-          <p>Исторические версии сайтов и страниц.</p>
-          <a class="link" href="https://web.archive.org/">web.archive.org</a>
+          <div class="icon">🔎</div>
+          <h3>Maigret</h3>
+          <p>Поиск пользователя по нику в огромном списке сайтов.</p>
+          <a class="link" href="https://github.com/soxoj/maigret">maigret</a>
         </div>
         <div class="card">
-          <h3>🗺 Geo-поиск</h3>
-          <p>Определение местоположения по фото через открытые сервисы.</p>
-          <a class="link" href="https://lens.google.com/">lens.google.com</a>
+          <div class="icon">🔍</div>
+          <h3>Censys</h3>
+          <p>Индекс интернета: сервисы, порты, инфраструктура.</p>
+          <a class="link" href="https://search.censys.io/">search.censys.io</a>
         </div>
         <div class="card">
-          <h3>💳 Проверка контрагента</h3>
+          <div class="icon">💳</div>
+          <h3>Проверка контрагента</h3>
           <p>Открытые реестры и данные для проверки юрлиц и ИП.</p>
           <a class="link" href="https://egrul.nalog.ru/">egrul.nalog.ru</a>
         </div>
       </div>
       <div class="notice">
-        <strong>Используй легально.</strong> Все инструменты работают с публичными данными. Сбор сведений о частных лицах без согласия и во вред им запрещён (152-ФЗ).
+        <strong>Используй легально.</strong> Все инструменты работают только с публичными данными. Сбор сведений о частных лицах без согласия и во вред им запрещён (152-ФЗ РФ).
       </div>
     </div>
   </section>
 
+  <section class="how">
+    <h2>Как это работает</h2>
+    <ol>
+      <li><b>Выбери премиум</b> — 50 звёзд.</li>
+      <li><b>Напиши владельцу</b> <a href="https://t.me/davny">@davny</a> и оплати звёздами.</li>
+      <li><b>Получи код</b> и введи его на сайте.</li>
+      <li><b>Откроется</b> закрытый премиум-раздел.</li>
+    </ol>
+    <a class="cta" href="https://t.me/davny">Написать владельцу →</a>
+  </section>
+
+  <section class="faq">
+    <h2>Частые вопросы</h2>
+    <details>
+      <summary>Что такое «давний осинт»?</summary>
+      <p>Это авторский набор инструментов по OSINT — работе с открытыми источниками. Всё, что в нём, доступно легально, без взломов.</p>
+    </details>
+    <details>
+      <summary>Зачем премиум за 50 звёзд?</summary>
+      <p>Премиум открывает расширенный список инструментов и методик. Базовые инструменты доступны бесплатно.</p>
+    </details>
+    <details>
+      <summary>Как оплатить?</summary>
+      <p>Напиши владельцу <a href="https://t.me/davny">@davny</a> в Telegram и оплати 50 звёзд. В ответ получишь код доступа.</p>
+    </details>
+    <details>
+      <summary>Это законно?</summary>
+      <p>Да — описаны только публичные источники и легальные инструменты. Незаконный сбор персональных данных исключён.</p>
+    </details>
+  </section>
+
   <footer>
-    <p>✦ ЗВЁЗДЫ · владелец <a href="https://t.me/davny">@davny</a> · премиум OSINT за 50⭐</p>
+    <p>✦ давний осинт · владелец <a href="https://t.me/davny">@davny</a> · премиум за 50⭐</p>
   </footer>
 
   <script src="stars.js"></script>
