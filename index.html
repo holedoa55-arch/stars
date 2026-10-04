@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Звёзды — премиум OSINT за 50⭐</title>
+  <meta name="description" content="Тёмный сайт со звёздным небом. Владелец @davny. Премиум OSINT-раздел за 50 звёзд.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <canvas id="stars"></canvas>
+  <div class="vignette"></div>
+
+  <div class="topbar">
+    <span class="brand">✦ ЗВЁЗДЫ</span>
+    <span class="owner">владелец: <a href="https://t.me/davny">@davny</a></span>
+  </div>
+
+  <header class="hero">
+    <div class="hero-inner">
+      <p class="logo">✦ ✦ ✦</p>
+      <h1>Звёздное небо<br>премиум-контента</h1>
+      <p class="sub">Тёмный космос с авторскими инструментами. Владелец канала — <a href="https://t.me/davny">@davny</a>.</p>
+    </div>
+  </header>
+
+  <section class="free">
+    <h2>Бесплатный раздел</h2>
+    <p class="section-sub">Несколько открытых инструментов в подарок</p>
+    <div class="cards">
+      <div class="card">
+        <h3>🕵 Поиск по нику</h3>
+        <p>Проверка одного username на десятках открытых платформ.</p>
+        <a class="link" href="https://whatsmyname.app/">whatsmyname.app</a>
+      </div>
+      <div class="card">
+        <h3>🌐 Обратный поиск фото</h3>
+        <p>Найти, где ещё встречается картинка.</p>
+        <a class="link" href="https://images.google.com/">images.google.com</a>
+      </div>
+      <div class="card">
+        <h3>🛰 Проверка данных в утечках</h3>
+        <p>Самопроверка email в публичных утечках.</p>
+        <a class="link" href="https://haveibeenpwned.com/">haveibeenpwned.com</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="premium" id="premium">
+    <div class="locked" id="locked">
+      <div class="lock-icon">🔒</div>
+      <h2>Премиум OSINT</h2>
+      <p class="section-sub">Закрытый набор инструментов и методик</p>
+      <div class="pay-box">
+        <span class="stars-big">50 ⭐</span>
+        <p>Чтобы открыть платный раздел — напиши владельцу:</p>
+        <a class="pay-btn" href="https://t.me/davny">Оплатить 50★ · @davny</a>
+        <p class="hint">После оплаты звёздами в Telegram владелец выдаст код доступа.</p>
+      </div>
+      <form id="code-form" onsubmit="event.preventDefault(); tryCode();">
+        <input id="code-input" type="text" placeholder="Введите код доступа" autocomplete="off">
+        <button id="code-btn" type="submit">Открыть</button>
+      </form>
+      <p id="code-msg" class="hint" style="margin-top:10px"></p>
+    </div>
+
+    <!-- Скрытый премиум-контент -->
+    <div class="premium-content" id="premium-content" style="display:none">
+      <h2>Премиум OSINT</h2>
+      <p class="section-sub">Ваш доступ активирован ✦</p>
+      <div class="cards">
+        <div class="card">
+          <h3>🛰 Shodan — про</h3>
+          <p>Детальный поиск открытых устройств и сервисов в интернете.</p>
+          <a class="link" href="https://www.shodan.io/">shodan.io</a>
+        </div>
+        <div class="card">
+          <h3>🧩 Sherlock CLI</h3>
+          <p>Массовая проверка ника по сотням площадок из терминала.</p>
+          <a class="link" href="https://github.com/sherlock-project/sherlock">sherlock</a>
+        </div>
+        <div class="card">
+          <h3>📡 crt.sh — субдомены</h3>
+          <p>Поиск субдоменов и сертификатов по Certificate Transparency.</p>
+          <a class="link" href="https://crt.sh/">crt.sh</a>
+        </div>
+        <div class="card">
+          <h3>🌍 Wayback Machine</h3>
+          <p>Исторические версии сайтов и страниц.</p>
+          <a class="link" href="https://web.archive.org/">web.archive.org</a>
+        </div>
+        <div class="card">
+          <h3>🗺 Geo-поиск</h3>
+          <p>Определение местоположения по фото через открытые сервисы.</p>
+          <a class="link" href="https://lens.google.com/">lens.google.com</a>
+        </div>
+        <div class="card">
+          <h3>💳 Проверка контрагента</h3>
+          <p>Открытые реестры и данные для проверки юрлиц и ИП.</p>
+          <a class="link" href="https://egrul.nalog.ru/">egrul.nalog.ru</a>
+        </div>
+      </div>
+      <div class="notice">
+        <strong>Используй легально.</strong> Все инструменты работают с публичными данными. Сбор сведений о частных лицах без согласия и во вред им запрещён (152-ФЗ).
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>✦ ЗВЁЗДЫ · владелец <a href="https://t.me/davny">@davny</a> · премиум OSINT за 50⭐</p>
+  </footer>
+
+  <script src="stars.js"></script>
+  <script src="codes.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>

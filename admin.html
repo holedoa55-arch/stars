@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Админка — Звёзды</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .admin-wrap {
+      max-width: 640px;
+      margin: 40px auto;
+      padding: 24px;
+    }
+    .panel {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+    }
+    .lock-screen { text-align: center; padding: 30px 20px; }
+    .lock-screen input {
+      padding: 12px 14px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--text);
+      font-size: 15px;
+      width: 240px;
+    }
+    .lock-screen button, .panel button {
+      padding: 12px 20px;
+      border: none;
+      border-radius: 10px;
+      background: var(--green);
+      color: #03120b;
+      font-weight: 800;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    .code-list {
+      list-style: none;
+      margin: 16px 0;
+    }
+    .code-list li {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 8px 12px;
+      margin-bottom: 8px;
+      font-family: monospace;
+    }
+    .code-list button {
+      background: #ff5d6d;
+      color: #fff;
+      margin: 0;
+      padding: 6px 12px;
+      font-size: 13px;
+    }
+    .add-row { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+    .add-row input {
+      flex: 1;
+      min-width: 160px;
+      padding: 12px 14px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--text);
+      font-size: 15px;
+      text-transform: uppercase;
+    }
+    .msg { margin-top: 12px; font-weight: 700; }
+    .msg.good { color: var(--green); }
+    .msg.bad { color: #ff5d6d; }
+    .back { display: inline-block; margin-top: 16px; color: var(--neon); text-decoration: none; }
+    .secret { color: var(--muted); font-size: 12px; margin-top: 14px; }
+  </style>
+</head>
+<body>
+
+  <nav class="topbar">
+    <span class="brand">✦ АДМИНКА</span>
+    <span class="owner">владелец: <a href="https://t.me/davny">@davny</a></span>
+  </nav>
+
+  <main class="admin-wrap">
+
+    <!-- Экран входа -->
+    <div class="panel lock-screen" id="lock">
+      <div class="lock-icon">🔐</div>
+      <h2 style="margin:10px 0 16px">Вход для владельца</h2>
+      <input id="admin-pass" type="password" placeholder="Пароль" autocomplete="off">
+      <br>
+      <button onclick="loginAdmin()">Войти</button>
+      <p id="login-msg" class="msg"></p>
+      <p class="secret">Эта админка хранит всё в браузере и открытых файлах — это схема для выдачи кодов, а не защита.</p>
+    </div>
+
+    <!-- Панель управления кодами -->
+    <div class="panel" id="panel" style="display:none">
+      <h2 style="margin-bottom:6px">Управление кодами</h2>
+      <p style="color:var(--muted);font-size:14px">Действующие коды премиум-доступа. Их вводит покупатель на сайте.</p>
+
+      <ul class="code-list" id="code-list"></ul>
+
+      <div class="add-row">
+        <input id="new-code" type="text" placeholder="Новый код (напр. MYCODE1)" autocomplete="off">
+        <button onclick="addCode()">Выдать код</button>
+      </div>
+      <p id="panel-msg" class="msg"></p>
+
+      <div class="add-row">
+        <button onclick="downloadCodes()" style="background:var(--neon);color:#02161d">Скачать codes.js</button>
+        <button onclick="logoutAdmin()" style="background:var(--border);color:var(--text)">Выйти</button>
+      </div>
+      <p class="secret">
+        Чтобы изменения реально появились у покупателей: скачай обновлённый <b>codes.js</b> и заново залей его в репозиторий на GitHub (замени старый файл), затем страница обновится.
+      </p>
+    </div>
+
+  </main>
+
+  <script>
+    // Пароль админки. Поменяй на свой! Это открытый файл — настоящей защиты нет.
+    var ADMIN_PASS = "Vanyqwqwgg6969";
+
+    // Коды, отданные в текущей сессии (для локального отображения).
+    // При загрузке берём из codes.js, который подключаем ниже.
+    var sessionCodes = (typeof PREMIUM_CODES !== "undefined") ? PREMIUM_CODES.slice() : ["STAR50", "O52N7K"];
+
+    function loginAdmin() {
+      var pass = document.getElementById("admin-pass").value;
+      var msg = document.getElementById("login-msg");
+      if (pass === ADMIN_PASS) {
+        document.getElementById("lock").style.display = "none";
+        document.getElementById("panel").style.display = "block";
+        renderList();
+      } else {
+        msg.textContent = "Неверный пароль";
+        msg.className = "msg bad";
+      }
+    }
+
+    function renderList() {
+      var ul = document.getElementById("code-list");
+      ul.innerHTML = "";
+      sessionCodes.forEach(function (c) {
+        var li = document.createElement("li");
+        li.appendChild(document.createTextNode(c));
+        var btn = document.createElement("button");
+        btn.textContent = "Удалить";
+        btn.onclick = (function (code) { return function () { removeCode(code); }; })(c);
+        li.appendChild(btn);
+        ul.appendChild(li);
+      });
+    }
+
+    function addCode() {
+      var inp = document.getElementById("new-code");
+      var v = inp.value.trim().toUpperCase();
+      var msg = document.getElementById("panel-msg");
+      if (!v) { msg.textContent = "Введи код"; msg.className = "msg bad"; return; }
+      if (sessionCodes.indexOf(v) === -1) sessionCodes.push(v);
+      inp.value = "";
+      msg.textContent = "Код добавлен. Скачай codes.js и залей в GitHub.";
+      msg.className = "msg good";
+      renderList();
+    }
+
+    function removeCode(code) {
+      var idx = sessionCodes.indexOf(code);
+      if (idx !== -1) sessionCodes.splice(idx, 1);
+      renderList();
+    }
+
+    function downloadCodes() {
+      var text = "// Коды премиум-доступа. Управляется через admin.html.\n// ВАЖНО: открытый статический файл — это выдача кодов, не защита.\nvar PREMIUM_CODES = " +
+        JSON.stringify(sessionCodes, null, 2) + ";\n";
+      var blob = new Blob([text], { type: "application/javascript" });
+      var a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "codes.js";
+      a.click();
+      URL.revokeObjectURL(a.href);
+    }
+
+    function logoutAdmin() {
+      document.getElementById("panel").style.display = "none";
+      document.getElementById("lock").style.display = "block";
+      document.getElementById("admin-pass").value = "";
+    }
+  </script>
+
+  <script src="codes.js"></script>
+</body>
+</html>
